@@ -6,6 +6,7 @@ Luca Chilan
 Lautaro Guevara
 Jordan Larcher
 Ryan Morales
+Babatunde Adekola
 
 ----------------DEVELOPMENT AND DEPLOYMENT PROCESS----------------
 Choose a Trello card, assign yourself to it, and move to "Doing".
