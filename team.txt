@@ -6,6 +6,7 @@ Luca Chilan
 Lautaro Guevara
 Jordan Larcher
 Ryan Morales
+Babatunde Adekola
 
 ----------------DEVELOPMENT AND DEPLOYMENT PROCESS----------------
 Choose a Trello card, assign yourself to it, and move to "Doing".
@@ -20,3 +21,4 @@ Another team member should review the pull request in GitHub and, if everything 
 Delete the old branch.
 Move the Trello card to the "Done" list.
 ------------------------------------------------------------------
+
