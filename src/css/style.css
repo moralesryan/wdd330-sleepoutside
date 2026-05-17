@@ -274,3 +274,8 @@ footer {
   top: 8px;
   right: -10px;
 }
+
+/* Cart Footer */
+.hide {
+  display: none;
+}

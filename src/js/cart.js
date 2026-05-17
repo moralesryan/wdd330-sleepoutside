@@ -8,6 +8,17 @@ function renderCartContents() {
   }
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  if (cartItems.length > 0) {
+    // calculate total
+    const total = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
+
+    // show the cart footer
+    document.querySelector(".cart-footer").classList.remove("hide");
+
+    // to fixed to two decimal places
+    document.querySelector(".cart-total").textContent = `Total: $${total.toFixed(2)}`;
+  }
 }
 
 function cartItemTemplate(item) {
