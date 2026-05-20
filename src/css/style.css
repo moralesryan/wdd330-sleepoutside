@@ -210,6 +210,24 @@ button {
   font-size: var(--small-font);
   /* max-height: 120px; */
   align-items: center;
+  position: relative;
+}
+
+.cart-card__remove {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.5rem;
+  cursor: pointer;
+  color: var(--dark-grey);
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: color 0.15s ease-in-out, transform 0.15s ease-in-out;
+  user-select: none;
+}
+
+.cart-card__remove:hover {
+  color: #ff4d4d; /* Dynamic crimson red color for deletion actions */
+  transform: scale(1.2);
 }
 
 .cart-card__image {
