@@ -28,6 +28,9 @@ export default class ProductDetails {
         cartItems.push(this.product);
         setLocalStorage("so-cart", cartItems);
     }
+    addToCart() {
+        this.addProductToCart();
+    }
     renderProductDetails() {
         productDetailsTemplate(this.product);
     }

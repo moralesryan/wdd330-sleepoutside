@@ -22,11 +22,12 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
-// get query string parameter
+// get the product id from the query string
 export function getParam(param) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  return urlParams.get(param);
+  const product = urlParams.get(param);
+  return product
 }
 
 export function renderListWithTemplate(
