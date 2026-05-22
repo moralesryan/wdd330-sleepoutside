@@ -1,4 +1,3 @@
-
 import { getLocalStorage } from "./utils.mjs";
 
 export function superscript() {

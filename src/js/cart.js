@@ -1,6 +1,8 @@
-import { superscript } from "./superscript.mjs";
+import { superscript } from "./countingElementCart.mjs";
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { loadHeaderFooter } from "./utils.mjs";
 
+loadHeaderFooter();
 function renderCartContents() {
   let cartItems = getLocalStorage("so-cart");
   if (!Array.isArray(cartItems)) {
@@ -18,11 +20,12 @@ function renderCartContents() {
 
     // to fixed to two decimal places
     document.querySelector(".cart-total").textContent = `Total: $${total.toFixed(2)}`;
-  // click event listener to each X button
-  const removeButtons = document.querySelectorAll(".cart-card__remove");
-  removeButtons.forEach((button) => {
-    button.addEventListener("click", removeFromCart);
-  });
+    // click event listener to each X button
+    const removeButtons = document.querySelectorAll(".cart-card__remove");
+    removeButtons.forEach((button) => {
+      button.addEventListener("click", removeFromCart);
+    });
+  }
 }
 
 function removeFromCart(e) {

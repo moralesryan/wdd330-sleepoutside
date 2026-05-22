@@ -1,11 +1,16 @@
 Link to our Trello Board👇
 https://trello.com/b/4qlIUTN0
 
+Link to render: 
+https://wdd330-sleepoutside-6wq5.onrender.com
+ 
+
 Team members: 
 Luca Chilan
 Lautaro Guevara
 Jordan Larcher
 Ryan Morales
+Thomas Bingham
 
 ----------------DEVELOPMENT AND DEPLOYMENT PROCESS----------------
 Choose a Trello card, assign yourself to it, and move to "Doing".
