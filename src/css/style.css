@@ -90,7 +90,7 @@ p {
   margin-top: -1.3em;
 }
 
-.logo--square > div {
+.logo--square>div {
   margin-top: -1.7em;
 }
 
@@ -278,4 +278,22 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+}
+
+/* cart superscript */
+.superscript {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  position: absolute;
+  top: 8px;
+  right: -10px;
+}
+
+/* Cart Footer */
+.hide {
+  display: none;
 }

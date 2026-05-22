@@ -1,4 +1,5 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { superscript } from "./superscript.mjs";
 
 export default class ProductDetails {
     constructor(productId, dataSource) {
@@ -48,4 +49,5 @@ function productDetailsTemplate(product) {
     document.getElementById('productDesc').innerHTML = product.DescriptionHtmlSimple;
 
     document.getElementById('addToCart').dataset.id = product.Id;
+    superscript();
 }
