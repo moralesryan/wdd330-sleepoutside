@@ -27,6 +27,7 @@ export default class ProductDetails {
         }
         cartItems.push(this.product);
         setLocalStorage("so-cart", cartItems);
+        superscript();
     }
     addToCart() {
         this.addProductToCart();
@@ -49,5 +50,4 @@ function productDetailsTemplate(product) {
     document.getElementById('productDesc').innerHTML = product.DescriptionHtmlSimple;
 
     document.getElementById('addToCart').dataset.id = product.Id;
-    superscript();
 }
