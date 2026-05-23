@@ -18,7 +18,11 @@ export default class ProductDetails {
         // Notice the .bind(this). This callback will not work if the bind(this) is missing. Review the readings from this week on 'this' to understand why.
         document
             .getElementById("addToCart")
-            .addEventListener("click", this.addProductToCart.bind(this));
+            .addEventListener("click", () => {
+                this.addProductToCart.bind(this);
+                const cart = document.querySelector(".cart");
+                cart.classList.add("cart-update");
+            });
     }
     addProductToCart() {
         let cartItems = getLocalStorage("so-cart");

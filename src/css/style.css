@@ -259,6 +259,34 @@ button {
   grid-column: 3;
 }
 
+.cart-update {
+  
+  animation: Cart-Update 2s ease 0.5s ;
+  
+}
+
+@keyframes Cart-Update {
+  
+  0% {
+    
+    transform: rotate(0deg);
+  }
+  
+  25% {
+    transform: rotate(-30deg);
+  }
+  50% {
+
+    transform: rotate(30deg);
+  }
+
+  75% {
+    transform: rotate(-30deg);
+  }
+  
+  
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
