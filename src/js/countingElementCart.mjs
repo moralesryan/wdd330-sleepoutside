@@ -1,18 +1,28 @@
 import { getLocalStorage } from "./utils.mjs";
 
 export function superscript() {
-    const superscript = document.createElement("span");
-    superscript.setAttribute("class", "superscript");
     const cart = document.querySelector(".cart");
-    // get number of items in cart from localStorage
-    const count = getLocalStorage('so-cart');
-    // if there are items in cart, add the count to the superscript
-    if (count) {
-        superscript.textContent = count.length;
+
+    if (!cart) {
+        console.warn("Cart element not found");
+        return;
     }
-    // else add a 0 to the superscript
-    else {
-        superscript.textContent = "0";
+
+    // Remove existing superscript to avoid duplicates
+    const existing = cart.querySelector(".superscript");
+    if (existing) existing.remove();
+
+    const superscriptEl = document.createElement("span");
+    superscriptEl.setAttribute("class", "superscript");
+
+    const cartItems = getLocalStorage('so-cart');
+
+    if (cartItems && cartItems.length > 0) {
+        const totalCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        superscriptEl.textContent = totalCount;
+    } else {
+        superscriptEl.textContent = "0";
     }
-    cart.appendChild(superscript);
+
+    cart.appendChild(superscriptEl);
 }

@@ -25,8 +25,17 @@ export default class ProductDetails {
         if (!Array.isArray(cartItems)) {
             cartItems = [];
         }
-        cartItems.push(this.product);
-        setLocalStorage("so-cart", cartItems);
+
+        const existingItem = cartItems.find(item => item.Id === this.product.Id);
+
+        if (existingItem) {
+            existingItem.quantity = (existingItem.quantity || 1) + 1;
+        } else {
+            this.product.quantity = 1;
+            cartItems.push(this.product);
+        }
+
+        setLocalStorage("so-cart", cartItems);  
         superscript();
     }
     addToCart() {
