@@ -4,15 +4,18 @@ import { superscript } from "./countingElementCart.mjs";
 function cartItemTemplate(item) {
     return `<li class='cart-card divider'>
   <span class='cart-card__remove' data-id='${item.Id}'>X</span>
-  <a href='#' class='cart-card__image'>
+
+  <a href='../product_pages/index.html?product=${item.Id}' class='cart-card__image'>
     <img
-      src='${item.Image}'
+      src='${item.Images?.PrimaryMedium || item.Images?.PrimarySmall}'
       alt='${item.Name}'
     />
   </a>
-  <a href='#'>
+
+  <a href='../product_pages/index.html?product=${item.Id}'>
     <h2 class='card__name'>${item.Name}</h2>
   </a>
+
   <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
   <p class='cart-card__quantity'>qty: 1</p>
   <p class='cart-card__price'>$${item.FinalPrice}</p>
