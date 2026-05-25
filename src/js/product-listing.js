@@ -6,7 +6,9 @@ import { superscript } from './countingElementCart.mjs';
 loadHeaderFooter();
 
 const category = getParam('category');
+
 document.querySelector('#product-listing-title').textContent = `Top Products: ${category}`;
+
 const dataSource = new ProductData(category);
 const listElement = document.querySelector('.product-list');
 const productList = new ProductList(category, dataSource, listElement);

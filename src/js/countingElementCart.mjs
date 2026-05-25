@@ -1,6 +1,8 @@
 import { getLocalStorage } from "./utils.mjs";
 
 export function superscript() {
+
+    // Find cart element
     const cart = document.querySelector(".cart");
 
     if (!cart) {
