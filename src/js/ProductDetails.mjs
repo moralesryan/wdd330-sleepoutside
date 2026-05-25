@@ -20,15 +20,24 @@ export default class ProductDetails {
             .getElementById("addToCart")
             .addEventListener("click", this.addProductToCart.bind(this));
     }
-    addProductToCart() {
-        let cartItems = getLocalStorage("so-cart");
-        if (!Array.isArray(cartItems)) {
-            cartItems = [];
-        }
-        cartItems.push(this.product);
-        setLocalStorage("so-cart", cartItems);
-        superscript();
+        addProductToCart() {
+
+    let cartItems = getLocalStorage("so-cart");
+
+    if (!Array.isArray(cartItems)) {
+        cartItems = [];
     }
+
+    cartItems.push(this.product);
+
+    setLocalStorage("so-cart", cartItems);
+
+    superscript();
+
+    // Redirect to cart page
+    window.location.href = "../cart/index.html";
+    }
+
     addToCart() {
         this.addProductToCart();
     }

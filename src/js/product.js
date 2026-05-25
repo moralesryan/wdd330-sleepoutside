@@ -1,22 +1,19 @@
-import { getParam } from './utils.mjs';
+import { getParam, loadHeaderFooter } from './utils.mjs';
 import ProductData from './ProductData.mjs';
 import ProductDetails from './ProductDetails.mjs';
-import { loadHeaderFooter } from "./utils.mjs";
+import { superscript } from "./countingElementCart.mjs";
 
 loadHeaderFooter();
-const dataSource = new ProductData('tents');
+superscript();
+
+// Get product ID from URL
 const productID = getParam('product');
 
+// Create data source
+const dataSource = new ProductData();
+
+// Create product details instance
 const product = new ProductDetails(productID, dataSource);
+
+// Initialize product details page
 product.init();
-
-// add to cart button event handler
-// async function addToCartHandler(e) {
-//   const product = await dataSource.findProductById(e.target.dataset.id);
-//   addProductToCart(product);
-// }
-
-// // add listener to Add to Cart button
-// document
-//   .getElementById("addToCart")
-//   .addEventListener("click", addToCartHandler);
