@@ -1,6 +1,9 @@
 import { loadHeaderFooter } from "./utils.mjs";
 import { superscript } from "./countingElementCart.mjs";
 
-loadHeaderFooter();
+async function init() {
+  await loadHeaderFooter(); // wait until header/footer are fully loaded
+  superscript(); // now cart exists → badge will show
+}
 
-superscript();
+init();
