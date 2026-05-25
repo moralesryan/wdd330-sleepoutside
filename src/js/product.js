@@ -2,8 +2,11 @@ import { getParam } from './utils.mjs';
 import ProductData from './ProductData.mjs';
 import ProductDetails from './ProductDetails.mjs';
 import { loadHeaderFooter } from "./utils.mjs";
+import { loadBreadcrumb } from "./Breadcrumb.mjs";
 
 loadHeaderFooter();
+loadBreadcrumb();
+
 const dataSource = new ProductData('tents');
 const productID = getParam('product');
 
