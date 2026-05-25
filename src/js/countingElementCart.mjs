@@ -5,22 +5,26 @@ export function superscript() {
     // Find cart element
     const cart = document.querySelector(".cart");
 
-    // Stop if cart does not exist
-    if (!cart) return;
-
-    // Get cart items
-    const count = getLocalStorage("so-cart") || [];
-
-    // Check if superscript already exists
-    let badge = cart.querySelector(".superscript");
-
-    // Create it if missing
-    if (!badge) {
-        badge = document.createElement("span");
-        badge.classList.add("superscript");
-        cart.appendChild(badge);
+    if (!cart) {
+        console.warn("Cart element not found");
+        return;
     }
 
-    // Update count
-    badge.textContent = count.length;
+    // Remove existing superscript to avoid duplicates
+    const existing = cart.querySelector(".superscript");
+    if (existing) existing.remove();
+
+    const superscriptEl = document.createElement("span");
+    superscriptEl.setAttribute("class", "superscript");
+
+    const cartItems = getLocalStorage('so-cart');
+
+    if (cartItems && cartItems.length > 0) {
+        const totalCount = cartItems.reduce((sum, item) => sum + (item.quantity || 1), 0);
+        superscriptEl.textContent = totalCount;
+    } else {
+        superscriptEl.textContent = "0";
+    }
+
+    cart.appendChild(superscriptEl);
 }
