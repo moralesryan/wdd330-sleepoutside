@@ -39,12 +39,15 @@ function productDetailsTemplate(product) {
     document.querySelector('h2').textContent = product.Brand.Name;
     document.querySelector('h3').textContent = product.NameWithoutBrand;
     const productImage = document.getElementById('productImage');
-    productImage.src =
-        product.Images?.PrimaryLarge ||
-        product.Images?.PrimaryMedium;
+    const small = product.Images?.PrimarySmall || "";
+    const medium = product.Images?.PrimaryMedium || "";
+    const large = product.Images?.PrimaryLarge || "";
+    productImage.src = large || medium;
+    productImage.srcset = `${medium} 800w, ${large} 1200w`;
+    productImage.sizes = "(max-width: 720px) 800px, 1200px";
     productImage.alt = product.NameWithoutBrand;
     productImage.onerror = () => {
-        productImage.src = product.Images?.PrimarySmall;
+        productImage.src = small;
     };
     document.getElementById('productPrice').textContent = `U$D ${product.FinalPrice}`;
     document.getElementById('productColor').textContent = product.Colors[0].ColorName;
