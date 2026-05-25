@@ -5,7 +5,8 @@ export function loadBreadcrumb(){
   // this will return the complete path
   const path = window.location.pathname;
   // this will generate an array of strings with each segment of the url path
-  const segments = path.split("/").filter(segment => segment !== "");
+  const segments = path.split("/").filter(segment => segment !== "" && segment !== "index.html");
+  console.log("segments array: ",segments);
 
 
   let currentPath = "/";
@@ -15,6 +16,11 @@ export function loadBreadcrumb(){
   homeLi.innerHTML = `<a href="${currentPath}">Home</a>`;
   breadCrumbUl.appendChild(homeLi);
 
+  // Get category from query string
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+
+
   // this generates the full path depending on the items in the array
   segments.forEach((segment, index) => {
     let cleanSegment = segment.replace(".html", "");
@@ -23,9 +29,17 @@ export function loadBreadcrumb(){
     const li = document.createElement("li");
     li.className = "breadcrumb-item";
 
-    const itemText = cleanSegment
+    let itemText;
+    if(index === segments.length - 1 && category) {
+      itemText = category
       .replace(/[-_]/g, " ")
-      .replace(/\b\w/g, (char) => char.toUpperCase());
+        .replace(/\b\w/g, (char) => char.toUpperCase());
+    }else {
+      itemText = cleanSegment
+        .replace(/[-_]/g, " ")
+        .replace(/\b\w/g, (char) => char.toUpperCase());
+    }
+
 
     if (index === segments.length -1) {
       li.classList.add("active");
