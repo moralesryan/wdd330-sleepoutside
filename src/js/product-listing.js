@@ -1,14 +1,28 @@
-import ProductList from "./ProductList.mjs";
 import ProductData from "./ProductData.mjs";
-import { getParam } from "./utils.mjs";
+import ProductList from "./ProductList.mjs";
+import { loadHeaderFooter, getParam } from "./utils.mjs";
 import { loadBreadcrumb } from "./Breadcrumb.mjs";
 
+loadHeaderFooter();
 loadBreadcrumb();
 
-const category = getParam("category") || "tents";
+const category = getParam("category");
+
 const dataSource = new ProductData();
+
 const listElement = document.querySelector(".product-list");
 
-const productList = new ProductList(category, dataSource, listElement);
+const myList = new ProductList(
+  category,
+  dataSource,
+  listElement
+);
 
-productList.init();
+myList.init();
+
+const titleElement = document.querySelector(".title");
+
+if (titleElement && category) {
+  titleElement.textContent =
+    `Top Products: ${category}`;
+}
