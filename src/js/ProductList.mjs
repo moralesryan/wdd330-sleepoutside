@@ -35,28 +35,50 @@ function productCardTemplate(product) {
 
 export default class ProductList {
 
-  constructor(category, dataSource, listElement) {
+  constructor(category, dataSource, listElement, searchQuery = "") {
     this.category = category;
     this.dataSource = dataSource;
     this.listElement = listElement;
+    this.searchQuery = searchQuery;
   }
 
   async init() {
-
-    const list =
-      await this.dataSource.getData(
-        this.category
-      );
+    let list = [];
+    if (this.searchQuery) {
+      const allProducts = await this.dataSource.getAllProducts();
+      list = this.filterProducts(allProducts, this.searchQuery);
+    } else {
+      list = await this.dataSource.getData(this.category);
+    }
 
     this.renderList(list);
   }
 
+  filterProducts(list, query) {
+    const q = query.toLowerCase().trim();
+    return list.filter(product => {
+      return (
+        product.Name?.toLowerCase().includes(q) ||
+        product.Brand?.Name?.toLowerCase().includes(q) ||
+        product.DescriptionHtmlSimple?.toLowerCase().includes(q) ||
+        product.Category?.toLowerCase().includes(q)
+      );
+    });
+  }
+
   renderList(list) {
+    this.listElement.innerHTML = "";
+    if (!list || list.length === 0) {
+      this.listElement.innerHTML = `<p class="no-products">No products found matching "${this.searchQuery || this.category}".</p>`;
+      return;
+    }
 
     renderListWithTemplate(
       productCardTemplate,
       this.listElement,
-      list
+      list,
+      "afterbegin",
+      true
     );
   }
 }

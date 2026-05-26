@@ -23,6 +23,13 @@ export default class ProductData {
     return data.Result;
   }
 
+  async getAllProducts() {
+    const categories = ["tents", "backpacks", "sleeping-bags", "hammocks"];
+    const allProductsPromises = categories.map(category => this.getData(category));
+    const allProductsArrays = await Promise.all(allProductsPromises);
+    return allProductsArrays.flat();
+  }
+
   async findProductById(id) {
     const response = await fetch(
       `${baseURL}product/${id}`
