@@ -7,77 +7,72 @@
   <title>Sleep Outside | Home</title>
 
   <link rel="stylesheet" href="./css/style.css" />
+
+  <!-- FIX: use relative path -->
   <script src="./js/main.js" type="module"></script>
 </head>
 
 <body>
 
-  <header class="divider" id="main-header">
-  </header>
+  <header class="divider" id="main-header"></header>
 
   <main class="divider">
 
     <!-- HERO SECTION -->
-        <section class="hero">
+    <section class="hero">
 
-        <!-- BACKGROUND IMAGE -->
-        <img
-          class="hero-img"
-          src="./images/banner-sm.jpg"
-          srcset="./images/banner-sm.jpg 500w, ./images/banner.jpg"
-          alt="image of a high mountain lake"
-        />
+      <img
+        class="hero-img"
+        src="./images/banner-sm.jpg"
+        srcset="./images/banner-sm.jpg 500w, ./images/banner.jpg"
+        alt="image of a high mountain lake"
+      />
 
-        <!-- HERO CONTENT OVERLAY -->
-        <div class="hero-content">
+      <div class="hero-content">
 
-          <!-- LOGO GROUP -->
-          <div class="hero-logo">
-            <img src="./images/noun_Tent_2517.svg" alt="tent image for logo" />
-            <h1>Sleep<span>Outside</span></h1>
-          </div>
-
-          <!-- MISSION TEXT -->
-          <p class="hero-mission">
-            Our mission is to provide you with everything you need to sleep outside
-            comfortably at an affordable price.
-          </p>
-
+        <div class="hero-logo">
+          <img src="./images/noun_Tent_2517.svg" alt="tent image for logo" />
+          <h1>Sleep<span>Outside</span></h1>
         </div>
 
-      </section>
+        <p class="hero-mission">
+          Our mission is to provide you with everything you need to sleep outside
+          comfortably at an affordable price.
+        </p>
 
-    <!-- ✅ CATEGORY SECTION (NEW - REQUIRED) -->
-        <section class="categories">
+      </div>
 
-      <a href="product_listing/index.html?category=tents" class="category-card">
+    </section>
+
+    <!-- CATEGORY SECTION -->
+    <section class="categories">
+
+      <a href="./product_listing/index.html?category=tents" class="category-card">
         <img src="./images/category-tents.svg" alt="Tents">
         <p>Tents</p>
       </a>
 
-      <a href="product_listing/index.html?category=backpacks" class="category-card">
+      <a href="./product_listing/index.html?category=backpacks" class="category-card">
         <img src="./images/category-backpacks.svg" alt="Backpacks">
         <p>Backpacks</p>
       </a>
 
-      <a href="product_listing/index.html?category=sleeping-bags" class="category-card">
+      <a href="./product_listing/index.html?category=sleeping-bags" class="category-card">
         <img src="./images/category-sleepingbags.svg" alt="Sleeping Bags">
         <p>Sleeping Bags</p>
       </a>
 
-      <a href="product_listing/index.html?category=hammocks" class="category-card">
+      <a href="./product_listing/index.html?category=hammocks" class="category-card">
         <img src="./images/category-hammocks.svg" alt="Hammocks">
         <p>Hammocks</p>
       </a>
 
-        </section>
-    <!-- PRODUCTS SECTION (DO NOT TOUCH) -->
+    </section>
+
+    <!-- PRODUCTS -->
     <section class="products">
       <h2>Top Products</h2>
-
-      <!-- Dynamic products will be inserted here -->
       <ul class="product-list"></ul>
-
     </section>
 
   </main>
