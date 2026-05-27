@@ -38,16 +38,17 @@ export default class ProductDetails {
 
 }
 function productDetailsTemplate(product) {
-    document.querySelector('h2').textContent = product.Brand.Name;
-    document.querySelector('h3').textContent = product.NameWithoutBrand;
+    console.log(product.Result);
+    document.querySelector('h2').textContent = product.Result.Brand.Name;
+    document.querySelector('h3').textContent = product.Result.NameWithoutBrand;
 
     const productImage = document.getElementById('productImage');
-    productImage.src = product.Image;
-    productImage.alt = product.NameWithoutBrand;
+    productImage.src = product.Result.Images.PrimaryLarge;
+    productImage.alt = product.Result.NameWithoutBrand;
 
-    document.getElementById('productPrice').textContent = `U$D ${product.FinalPrice}`;
-    document.getElementById('productColor').textContent = product.Colors[0].ColorName;
-    document.getElementById('productDesc').innerHTML = product.DescriptionHtmlSimple;
+    document.getElementById('productPrice').textContent = `U$D ${product.Result.FinalPrice}`;
+    document.getElementById('productColor').textContent = product.Result.Colors[0].ColorName;
+    document.getElementById('productDesc').innerHTML = product.Result.DescriptionHtmlSimple;
 
     document.getElementById('addToCart').dataset.id = product.Id;
 }
