@@ -36,10 +36,16 @@
                 alt="Product image"
             />
 
+            
+
             <!-- Price -->
-            <p id="productPrice" class="product-card__price">
-                $0.00
-            </p>
+            <div class="product-pricing">
+            <p id="productOriginalPrice" class="product-card__price original-price"></p>
+
+            <p id="productDiscount" class="product-discount"></p>
+
+            <p id="productPrice" class="product-card__price final-price"></p>
+            </div>
 
             <!-- Color -->
             <p id="productColor" class="product__color">
@@ -60,7 +66,13 @@
 
         </section>
 
+        <div id="toast" class="toast">
+  ✅ Added to Cart
+</div>
+
     </main>
+
+    
 
     <!-- FOOTER -->
     <footer id="main-footer"></footer>

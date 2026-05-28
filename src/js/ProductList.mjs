@@ -1,9 +1,16 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
+  const image = product.Images?.PrimaryMedium || "";
 
-  const image =
-    product.Images?.PrimaryMedium || "";
+  // ✅ calculate discount
+  const hasDiscount =
+    product.SuggestedRetailPrice &&
+    product.FinalPrice < product.SuggestedRetailPrice;
+
+  const discountAmount = hasDiscount
+    ? (product.SuggestedRetailPrice - product.FinalPrice).toFixed(2)
+    : null;
 
   return `
     <li class="product-card">
@@ -27,11 +34,20 @@ function productCardTemplate(product) {
           $${product.FinalPrice}
         </p>
 
+        ${
+          hasDiscount
+            ? `<p class="discount-badge">
+                Save $${discountAmount}
+               </p>`
+            : ""
+        }
+
       </a>
 
     </li>
   `;
 }
+
 
 export default class ProductList {
 
@@ -40,31 +56,93 @@ export default class ProductList {
     this.dataSource = dataSource;
     this.listElement = listElement;
     this.searchQuery = searchQuery;
+    this.product = [];
   }
 
   async init() {
-    let list = [];
-    if (this.searchQuery) {
-      const allProducts = await this.dataSource.getAllProducts();
-      list = this.filterProducts(allProducts, this.searchQuery);
-    } else {
-      list = await this.dataSource.getData(this.category);
-    }
 
-    this.renderList(list);
+  if (this.searchQuery) {
+
+    const allProducts = await this.dataSource.getAllProducts();
+
+    this.products = this.filterProducts(
+      allProducts,
+      this.searchQuery
+    );
+
+  } else {
+
+    this.products = await this.dataSource.getData(
+      this.category
+    );
+
   }
 
-  filterProducts(list, query) {
-    const q = query.toLowerCase().trim();
-    return list.filter(product => {
-      return (
-        product.Name?.toLowerCase().includes(q) ||
-        product.Brand?.Name?.toLowerCase().includes(q) ||
-        product.DescriptionHtmlSimple?.toLowerCase().includes(q) ||
-        product.Category?.toLowerCase().includes(q)
-      );
+  this.renderList(this.products);
+
+  // Sorting Event
+  const sortElement = document.getElementById("sortProducts");
+
+  if (sortElement) {
+
+    sortElement.addEventListener("change", (e) => {
+
+      this.sortProducts(e.target.value);
+
     });
+
   }
+
+}
+
+sortProducts(sortType) {
+
+  let sortedProducts = [...this.products];
+
+  switch (sortType) {
+
+    case "name-asc":
+
+      sortedProducts.sort((a, b) =>
+        a.Name.localeCompare(b.Name)
+      );
+
+      break;
+
+    case "name-desc":
+
+      sortedProducts.sort((a, b) =>
+        b.Name.localeCompare(a.Name)
+      );
+
+      break;
+
+    case "price-asc":
+
+      sortedProducts.sort(
+        (a, b) => a.FinalPrice - b.FinalPrice
+      );
+
+      break;
+
+    case "price-desc":
+
+      sortedProducts.sort(
+        (a, b) => b.FinalPrice - a.FinalPrice
+      );
+
+      break;
+
+    default:
+
+      sortedProducts = [...this.products];
+
+  }
+
+  this.renderList(sortedProducts);
+
+}
+
 
   renderList(list) {
     this.listElement.innerHTML = "";
