@@ -1,27 +1,54 @@
 <!doctype html>
-
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
   <title>Sleep Outside | Checkout</title>
 
-  <link rel="stylesheet" href="/css/style.css" />
-  <script src="../js/checkout.js" type="module"></script>
+  <link
+    rel="stylesheet"
+    href="/css/style.css"
+  />
+
+  <script
+    src="/js/checkout.js"
+    type="module"
+  ></script>
 </head>
 
 <body>
-  <header class="divider" id="main-header"></header>
+
+  <!-- Dynamic Header -->
+  <header
+    class="divider"
+    id="main-header"
+  ></header>
+
   <main class="divider">
+
     <section class="products">
-      <h2>Review & Place your Order</h2>
+
+      <h2>Review &amp; Place Your Order</h2>
+
+      <!-- Checkout items will render here -->
+      <div id="checkout-list"></div>
+
+      <!-- Order summary -->
+      <div id="order-summary"></div>
+
     </section>
+
   </main>
 
+  <!-- Dynamic Footer -->
   <footer id="main-footer"></footer>
+
 </body>
 
 </html>
