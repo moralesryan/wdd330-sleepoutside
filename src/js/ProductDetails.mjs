@@ -16,9 +16,14 @@ export default class ProductDetails {
 
         // once the HTML is rendered, add a listener to the Add to Cart button
         // Notice the .bind(this). This callback will not work if the bind(this) is missing. Review the readings from this week on 'this' to understand why.
+        // added query selector for ".cart" for functionality when button is clicked item rotates back and forth to show something has been added to the cart
         document
             .getElementById("addToCart")
-            .addEventListener("click", this.addProductToCart.bind(this));
+            .addEventListener("click", () => {
+                this.addProductToCart.bind(this);
+                const cart = document.querySelector(".cart");
+                cart.classList.add("cart-update");
+            });
     }
         addProductToCart() {
 
