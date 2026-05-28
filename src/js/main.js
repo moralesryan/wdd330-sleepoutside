@@ -2,7 +2,10 @@ import { loadHeaderFooter } from "./utils.mjs";
 import { superscript } from "./countingElementCart.mjs";
 import { loadBreadcrumb } from "./Breadcrumb.mjs";
 
-loadHeaderFooter();
-loadBreadcrumb();
+async function init() {
+  await loadHeaderFooter();
+  loadBreadcrumb();
+  superscript();
+}
 
-superscript();
+init();

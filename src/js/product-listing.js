@@ -7,6 +7,7 @@ loadHeaderFooter();
 loadBreadcrumb();
 
 const category = getParam("category");
+const searchQuery = getParam("search");
 
 const dataSource = new ProductData();
 
@@ -15,14 +16,18 @@ const listElement = document.querySelector(".product-list");
 const myList = new ProductList(
   category,
   dataSource,
-  listElement
+  listElement,
+  searchQuery || ""
 );
 
 myList.init();
 
 const titleElement = document.querySelector(".title");
 
-if (titleElement && category) {
-  titleElement.textContent =
-    `Top Products: ${category}`;
+if (titleElement) {
+  if (searchQuery) {
+    titleElement.textContent = `Search Results for: "${searchQuery}"`;
+  } else if (category) {
+    titleElement.textContent = `Top Products: ${category}`;
+  }
 }
