@@ -1,26 +1,24 @@
 import { getLocalStorage } from "./utils.mjs";
 
 export function superscript() {
+  const cart = document.querySelector(".cart");
 
-    // Find cart element
-    const cart = document.querySelector(".cart");
+  if (!cart) return; // safety check (prevents Render crash)
 
-    // Stop if cart does not exist
-    if (!cart) return;
+  // Remove old badge if it already exists
+  const existing = cart.querySelector(".superscript");
+  if (existing) {
+    existing.remove();
+  }
 
-    // Get cart items
-    const count = getLocalStorage("so-cart") || [];
+  // Get cart items from localStorage
+  const count = getLocalStorage("so-cart") || [];
 
-    // Check if superscript already exists
-    let badge = cart.querySelector(".superscript");
+  // Create badge
+  const badge = document.createElement("span");
+  badge.className = "superscript";
+  badge.textContent = count.length;
 
-    // Create it if missing
-    if (!badge) {
-        badge = document.createElement("span");
-        badge.classList.add("superscript");
-        cart.appendChild(badge);
-    }
-
-    // Update count
-    badge.textContent = count.length;
+  // Attach badge to cart icon
+  cart.appendChild(badge);
 }
