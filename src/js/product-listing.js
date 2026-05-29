@@ -1,4 +1,4 @@
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 import ProductList from "./ProductList.mjs";
 import { loadHeaderFooter, getParam } from "./utils.mjs";
 
@@ -9,8 +9,8 @@ loadHeaderFooter();
 const category = getParam("category");
 const searchQuery = getParam("search");
 
-// Create ProductData instance
-const dataSource = new ProductData();
+// Create ExternalServices instance
+const dataSource = new ExternalServices();
 
 // Get product list container
 const listElement = document.querySelector(".product-list");
@@ -35,4 +35,4 @@ if (titleElement) {
   } else if (category) {
     titleElement.textContent = `Top Products: ${category}`;
   }
-}
+}
