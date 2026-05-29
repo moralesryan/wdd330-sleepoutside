@@ -822,6 +822,14 @@ footer {
   background-color: #fcfcfc;
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
+}
+
+.checkout__name,
+.checkout__address,
+.checkout__payment {
+  display: flex;
+  flex-direction: column;
   gap: 0.75rem;
 }
 
@@ -923,3 +931,49 @@ footer {
   color: var(--secondary-color);
   margin-bottom: 1rem;
 }
+
+/* Cart Checkout Button & Footer */
+.cart-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f8f8f8;
+  border-radius: 12px;
+  margin-top: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.cart-footer p {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+#checkout-btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  font-size: 1.2rem;
+  background-color: var(--secondary-color);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  text-align: center;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 300px;
+}
+
+#checkout-btn:hover {
+  background-color: var(--tertiary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+#checkout-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+

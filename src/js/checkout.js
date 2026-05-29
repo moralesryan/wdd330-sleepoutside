@@ -3,5 +3,13 @@ import CheckoutProcess from "./CheckoutProcess.mjs";
 
 loadHeaderFooter();
 
-const checkout = new CheckoutProcess("cart", "#order-summary");
-checkout.init();
+const order = new CheckoutProcess("so-cart", "#order-summary");
+order.init();
+
+document.querySelector("#zip").addEventListener("blur", order.calculateOrderTotal.bind(order));
+
+document.querySelector("#checkoutSubmit").addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log(order)
+    order.checkout();
+});

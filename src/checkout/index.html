@@ -30,44 +30,49 @@
       <!-- Order summary -->
       <div id="order-summary">
         <h2>Order Summary</h2>
-        <p>Subtotal: <span id="subtotal">$0.00</span></p>
+        <p>Number of Items: <span id="num-items"></span></p>
+        <p>Subtotal: <span id="cartTotal">$0.00</span></p>
         <p>Tax: <span id="tax">$0.00</span></p>
         <p>Shipping: <span id="shipping">$0.00</span></p>
-        <p><b>Total: <span id="total">$0.00</span></b></p>
+        <p><b>Total: <span id="orderTotal">$0.00</span></b></p>
 
       </div>
 
       <!-- checkout form -->
       <div class="checkout">
-        <form action="" method="post">
+        <form name="checkout-form">
+          <input type="hidden" name="orderDate" id="orderDate">
           <fieldset>
-            <legend>Your Information</legend>
-            <label for="name">Name: </label>
-            <input type="text" id="name" aria-label="name" required>
-            <label for="lname">Last Name: </label>
-            <input type="text" id="lname" aria-label="lname" required>
+            <legend></legend>
+            <div class="checkout__name">
+              <label for="fname">First Name</label>
+              <input type="text" name="fname" id="fname" required>
+              <label for="lname">Last Name</label>
+              <input type="text" name="lname" id="lname" required>
+            </div>
+            <div class="checkout__address">
+              <label for="street">Street Address</label>
+              <input type="text" name="street" id="street" required>
+              <label for="city">City</label>
+              <input type="text" name="city" id="city" required>
+              <label for="state">State</label>
+              <input type="text" name="state" id="state" required>
+              <label for="zip">Zip</label>
+              <input type="text" name="zip" id="zip" required>
+            </div>
           </fieldset>
           <fieldset>
-            <legend>Shipping Address</legend>
-            <label for="street-ad">Street Address: </label>
-            <input type="text" id="street-ad" aria-label="street-ad" required>
-            <label for="city">City: </label>
-            <input type="text" id="city" aria-label="city" required>
-            <label for="state">State: </label>
-            <input type="text" id="state" aria-label="state" required>
-            <label for="zip">Zip Code: </label>
-            <input type="text" id="zip" aria-label="zip" required>
+            <legend>Payment</legend>
+            <div class="checkout__payment">
+              <label for="cardNumber">Card Number</label>
+              <input type="text" name="cardNumber" id="cardNumber" required>
+              <label for="expiration">Expiration</label>
+              <input type="text" name="expiration" id="expiration" required>
+              <label for="code">CVV</label>
+              <input type="text" name="code" id="code" required>
+            </div>
           </fieldset>
-          <fieldset>
-            <legend>Payment Information</legend>
-            <label for="ccnum">Card Number: </label>
-            <input type="text" id="ccnum" aria-label="ccnum" required>
-            <label for="exp">Expiration Date: </label>
-            <input type="text" id="exp" aria-label="exp" required>
-            <label for="cvv">CVV: </label>
-            <input type="text" id="cvv" aria-label="cvv" required>
-          </fieldset>
-          <button type="submit">Place Order</button>
+          <button type="submit" id="checkoutSubmit">Checkout</button>
         </form>
       </div>
     </section>
