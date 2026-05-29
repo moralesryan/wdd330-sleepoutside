@@ -1,5 +1,5 @@
 import { getParam, loadHeaderFooter } from "./utils.mjs";
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 import { superscript } from "./countingElementCart.mjs";
 
@@ -26,7 +26,7 @@ if (!productID) {
 }
 
 // Create data source
-const dataSource = new ProductData();
+const dataSource = new ExternalServices();
 
 // Create product instance
 const product = new ProductDetails(productID, dataSource);
