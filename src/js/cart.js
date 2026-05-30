@@ -1,8 +1,10 @@
 import { superscript } from "./countingElementCart.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 import ShoppingCart from "./ShoppingCart.mjs";
+import { loadBreadcrumb } from "./Breadcrumb.mjs";
 
 loadHeaderFooter();
+loadBreadcrumb();
 
 const cartElement = document.querySelector(".product-list");
 const cart = new ShoppingCart("so-cart", cartElement);

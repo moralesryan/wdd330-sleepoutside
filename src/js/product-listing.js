@@ -1,16 +1,19 @@
+import ProductData from "./ProductData.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 import ProductList from "./ProductList.mjs";
 import { loadHeaderFooter, getParam } from "./utils.mjs";
+import { loadBreadcrumb } from "./Breadcrumb.mjs";
 
-// Load header and footer
+// Load header, footer and breadcrumb
 loadHeaderFooter();
+loadBreadcrumb();
 
 // Get category or search query from URL
 const category = getParam("category");
 const searchQuery = getParam("search");
 
-// Create ExternalServices instance
-const dataSource = new ExternalServices();
+// Choose data source: prefer ExternalServices if available, otherwise fallback to ProductData
+const dataSource = typeof ExternalServices !== "undefined" ? new ExternalServices() : new ProductData();
 
 // Get product list container
 const listElement = document.querySelector(".product-list");
@@ -23,7 +26,7 @@ const myList = new ProductList(
   searchQuery || ""
 );
 
-// Render products
+// Render/init products
 myList.init();
 
 // Update page title

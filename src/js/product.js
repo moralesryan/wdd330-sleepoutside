@@ -2,14 +2,13 @@ import { getParam, loadHeaderFooter } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 import { superscript } from "./countingElementCart.mjs";
+import { loadBreadcrumb } from "./Breadcrumb.mjs";
 
-// Load shared UI first
 loadHeaderFooter();
+loadBreadcrumb();
 
-// Get product ID safely
 const productID = getParam("product");
 
-// Guard clause (VERY IMPORTANT)
 if (!productID) {
   console.error("❌ No product ID found in URL");
 
@@ -28,15 +27,11 @@ if (!productID) {
 // Create data source
 const dataSource = new ExternalServices();
 
-// Create product instance
 const product = new ProductDetails(productID, dataSource);
 
-// Safe initialization
 (async function initPage() {
   try {
     await product.init();
-
-    // Run cart badge AFTER page is ready
     superscript();
   } catch (error) {
     console.error("❌ Failed to initialize product page:", error);

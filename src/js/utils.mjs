@@ -85,10 +85,9 @@ export async function loadHeaderFooter() {
 
   if (!headerElement || !footerElement) return;
 
-  headerElement.innerHTML = headerTemplate;
-  footerElement.innerHTML = footerTemplate;
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
 
-  // IMPORTANT: wait for DOM injection before running cart badge
   setTimeout(() => {
     superscript();
   }, 0);
