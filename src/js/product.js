@@ -1,5 +1,5 @@
 import { getParam, loadHeaderFooter } from "./utils.mjs";
-import ProductData from "./ProductData.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 import { superscript } from "./countingElementCart.mjs";
 import { loadBreadcrumb } from "./Breadcrumb.mjs";
@@ -24,7 +24,8 @@ if (!productID) {
   throw new Error("Missing product ID");
 }
 
-const dataSource = new ProductData();
+// Create data source
+const dataSource = new ExternalServices();
 
 const product = new ProductDetails(productID, dataSource);
 

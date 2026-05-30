@@ -20,32 +20,30 @@ export default class ProductDetails {
         document
             .getElementById("addToCart")
             .addEventListener("click", () => {
-                this.addProductToCart.bind(this);
+                this.addProductToCart();
                 const cart = document.querySelector(".cart");
                 cart.classList.add("cart-update");
             });
     }
-        addProductToCart() {
+    addProductToCart() {
+        if (!this.product || !this.product.Id) {
+            console.error("Product data is missing or incomplete:", this.product);
+            return;
+        }
 
-    let cartItems = getLocalStorage("so-cart");
+        let cartItems = getLocalStorage("so-cart");
 
-    if (!Array.isArray(cartItems)) {
-        cartItems = [];
+        if (!Array.isArray(cartItems)) {
+            cartItems = [];
+        }
+
+        cartItems.push(this.product);
+
+        setLocalStorage("so-cart", cartItems);
+
+        superscript();
     }
 
-    cartItems.push(this.product);
-
-    setLocalStorage("so-cart", cartItems);
-
-    superscript();
-
-    // Redirect to cart page
-    window.location.href = "../cart/index.html";
-    }
-
-    addToCart() {
-        this.addProductToCart();
-    }
     renderProductDetails() {
         productDetailsTemplate(this.product);
     }
@@ -63,7 +61,7 @@ function productDetailsTemplate(product) {
     productImage.alt = product.NameWithoutBrand;
 
     productImage.onerror = () => {
-    productImage.src = product.Images?.PrimarySmall;
+        productImage.src = product.Images?.PrimarySmall;
     };
 
     document.getElementById('productPrice').textContent = `U$D ${product.FinalPrice}`;
