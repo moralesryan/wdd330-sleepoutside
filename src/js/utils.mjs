@@ -93,3 +93,17 @@ export async function loadHeaderFooter() {
     superscript();
   }, 0);
 }
+export function isFirstVisit() {
+  const register = document.getElementById("register");
+
+  if (localStorage.getItem("visited") === null) {
+    localStorage.setItem("visited", "true");
+    onclick.register(() => {
+      register.classList.add("hide");
+    })
+  }
+  else {
+    register.classList.add("hide");
+
+  }
+}

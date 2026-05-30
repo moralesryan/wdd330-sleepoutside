@@ -151,6 +151,58 @@ button {
   text-align: center;
 }
 
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.logo,
+.search-bar,
+.cart {
+  order: 1;
+}
+
+#register {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  order: 2;
+  flex: 1 1 100%;
+  width: 100%;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem 0.85rem 1rem;
+
+  border: 1px solid rgba(240, 168, 104, 0.35);
+  border-radius: 14px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  color: #1f313d;
+  font-size: 0.98rem;
+  min-width: 0;
+}
+
+#register strong {
+  font-weight: 700;
+}
+
+#register.hide {
+  display: none;
+}
+
+#registration-a {
+  
+  
+  color: purple;
+}
+
+#registration-button:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+  box-shadow: 0 12px 24px rgba(240, 168, 104, 0.34);
+}
+
 .products {
   margin-top: 2rem;
   padding: 1rem;
@@ -226,7 +278,8 @@ button {
 }
 
 .cart-card__remove:hover {
-  color: #ff4d4d; /* Dynamic crimson red color for deletion actions */
+  color: #ff4d4d;
+  /* Dynamic crimson red color for deletion actions */
   transform: scale(1.2);
 }
 
@@ -260,21 +313,22 @@ button {
 }
 
 .cart-update {
-  
-  animation: Cart-Update 2s ease 0.5s ;
-  
+
+  animation: Cart-Update 2s ease 0.5s;
+
 }
 
 @keyframes Cart-Update {
-  
+
   0% {
-    
+
     transform: rotate(0deg);
   }
-  
+
   25% {
     transform: rotate(-30deg);
   }
+
   50% {
 
     transform: rotate(30deg);
@@ -283,8 +337,8 @@ button {
   75% {
     transform: rotate(-30deg);
   }
-  
-  
+
+
 }
 
 @media screen and (min-width: 500px) {
@@ -325,6 +379,7 @@ footer {
 .hide {
   display: none;
 }
+
 :root {
   --font-body: Arial, Helvetica, sans-serif;
   --font-headline: Haettenschweiler, "Arial Narrow Bold", sans-serif;
@@ -553,7 +608,8 @@ button {
 }
 
 .cart-card__remove:hover {
-  color: #ff4d4d; /* Dynamic crimson red color for deletion actions */
+  color: #ff4d4d;
+  /* Dynamic crimson red color for deletion actions */
   transform: scale(1.2);
 }
 
@@ -697,12 +753,13 @@ footer {
   font-size: 2.5rem;
   font-weight: 800;
   color: black;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 /* "Outside" styling */
 .hero-logo span {
-  color: #8a470c; /* deep purple */
+  color: #8a470c;
+  /* deep purple */
   font-weight: 900;
 }
 
@@ -781,6 +838,7 @@ footer {
     flex-wrap: wrap;
     gap: 0.5rem;
   }
+
   .search-bar {
     order: 3;
     margin: 0.5rem auto 0 auto;
@@ -798,4 +856,3 @@ footer {
   color: var(--dark-grey);
   opacity: 0.7;
 }
-
