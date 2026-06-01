@@ -977,3 +977,104 @@ footer {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+/* ==========================================================================
+   10. Image Carousel Styles
+   ========================================================================== */
+.carousel-container {
+  position: relative;
+  margin: 1.5rem auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+.carousel-slides-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--light-grey);
+  background-color: #fff;
+}
+
+.carousel-slides {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: 100%;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  display: block;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 10;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+}
+
+.carousel-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
+}
+
+.carousel-thumbnails {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.carousel-thumb {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border: 2px solid var(--light-grey);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: white;
+}
+
+.carousel-thumb:hover {
+  transform: scale(1.05);
+  border-color: var(--primary-color);
+}
+
+.carousel-thumb.active {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 6px rgba(240, 168, 104, 0.6);
+  transform: scale(1.05);
+}
+
+
