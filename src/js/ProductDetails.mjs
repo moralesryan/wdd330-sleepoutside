@@ -55,15 +55,137 @@ function productDetailsTemplate(product) {
     document.querySelector('h3').textContent = product.NameWithoutBrand;
 
     const productImage = document.getElementById('productImage');
-    productImage.src =
-        product.Images?.PrimaryLarge ||
-        product.Images?.PrimaryMedium;
 
-    productImage.alt = product.NameWithoutBrand;
+    // Gather all images (Primary + ExtraImages)
+    const allImages = [];
+    const primarySrc = product.Images?.PrimaryLarge || product.Images?.PrimaryMedium || product.Images?.PrimarySmall;
+    if (primarySrc) {
+        allImages.push({
+            Src: primarySrc,
+            Title: product.NameWithoutBrand
+        });
+    }
 
-    productImage.onerror = () => {
-        productImage.src = product.Images?.PrimarySmall;
-    };
+    const extraImages = product.Images?.ExtraImages;
+    if (Array.isArray(extraImages) && extraImages.length > 0) {
+        extraImages.forEach(img => {
+            if (img.Src) {
+                allImages.push({
+                    Src: img.Src,
+                    Title: img.Title || product.NameWithoutBrand
+                });
+            }
+        });
+    }
+
+    if (productImage) {
+        if (allImages.length > 1) {
+            const container = document.createElement('div');
+            container.className = 'carousel-container';
+
+            const slidesWrapper = document.createElement('div');
+            slidesWrapper.className = 'carousel-slides-wrapper';
+
+            const slides = document.createElement('div');
+            slides.className = 'carousel-slides';
+
+            allImages.forEach((imgData) => {
+                const img = document.createElement('img');
+                img.className = 'carousel-slide';
+                img.src = imgData.Src;
+                img.alt = imgData.Title;
+                img.onerror = () => {
+                    img.src = product.Images?.PrimarySmall || '';
+                };
+                slides.appendChild(img);
+            });
+
+            slidesWrapper.appendChild(slides);
+            container.appendChild(slidesWrapper);
+
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'carousel-btn prev';
+            prevBtn.innerHTML = '&#10094;';
+            container.appendChild(prevBtn);
+
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'carousel-btn next';
+            nextBtn.innerHTML = '&#10095;';
+            container.appendChild(nextBtn);
+
+            const thumbnails = document.createElement('div');
+            thumbnails.className = 'carousel-thumbnails';
+
+            allImages.forEach((imgData, index) => {
+                const thumb = document.createElement('img');
+                thumb.className = 'carousel-thumb' + (index === 0 ? ' active' : '');
+                thumb.src = imgData.Src;
+                thumb.alt = `${imgData.Title} - Option ${index + 1}`;
+                thumb.dataset.index = index;
+                thumb.onerror = () => {
+                    thumb.src = product.Images?.PrimarySmall || '';
+                };
+                thumbnails.appendChild(thumb);
+            });
+
+            container.appendChild(thumbnails);
+
+            productImage.parentNode.replaceChild(container, productImage);
+
+            let currentIndex = 0;
+            const totalSlides = allImages.length;
+
+            const updateCarousel = (index) => {
+                if (index < 0) {
+                    currentIndex = totalSlides - 1;
+                } else if (index >= totalSlides) {
+                    currentIndex = 0;
+                } else {
+                    currentIndex = index;
+                }
+
+                slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+                const thumbs = thumbnails.querySelectorAll('.carousel-thumb');
+                thumbs.forEach((t, i) => {
+                    if (i === currentIndex) {
+                        t.classList.add('active');
+                    } else {
+                        t.classList.remove('active');
+                    }
+                });
+            };
+
+            prevBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                updateCarousel(currentIndex - 1);
+            });
+
+            nextBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                updateCarousel(currentIndex + 1);
+            });
+
+            thumbnails.addEventListener('click', (e) => {
+                const clickedThumb = e.target.closest('.carousel-thumb');
+                if (clickedThumb) {
+                    e.preventDefault();
+                    const index = parseInt(clickedThumb.dataset.index, 10);
+                    updateCarousel(index);
+                }
+            });
+        } else {
+            productImage.src =
+                product.Images?.PrimaryLarge ||
+                product.Images?.PrimaryMedium;
+
+            productImage.alt = product.NameWithoutBrand;
+
+            productImage.onerror = () => {
+                productImage.src = product.Images?.PrimarySmall;
+            };
+        }
+    }
 
     document.getElementById('productPrice').textContent = `U$D ${product.FinalPrice}`;
     document.getElementById('productColor').textContent = product.Colors[0].ColorName;
