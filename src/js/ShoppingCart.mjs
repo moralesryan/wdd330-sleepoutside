@@ -17,64 +17,77 @@ function cartItemTemplate(item) {
   </a>
 
   <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
-  <p class='cart-card__quantity'>qty: 1</p>
+  <p class='cart-card__quantity'>qty: ${item.Quantity}</p>
   <p class='cart-card__price'>$${item.FinalPrice}</p>
 </li>`;
 }
 
 export default class ShoppingCart {
-    constructor(key, parentElement) {
-        this.key = key;
-        this.parentElement = parentElement;
+  constructor(key, parentElement) {
+    this.key = key;
+    this.parentElement = parentElement;
+  }
+
+  init() {
+    this.renderCartContents();
+  }
+
+  renderCartContents() {
+    const cartItems = getLocalStorage(this.key) || [];
+
+    this.parentElement.innerHTML = "";
+
+    if (cartItems.length > 0) {
+      renderListWithTemplate(cartItemTemplate, this.parentElement, cartItems);
+
+      const total = cartItems.reduce((sum, item) => sum + (item.FinalPrice * item.Quantity), 0);
+
+      const footerElement = document.querySelector(".cart-footer");
+      if (footerElement) {
+        footerElement.classList.remove("hide");
+      }
+
+      const totalElement = document.querySelector(".cart-total");
+      if (totalElement) {
+        totalElement.textContent = `Total: $${total.toFixed(2)}`;
+      }
+
+      const removeButtons =
+        this.parentElement.querySelectorAll(".cart-card__remove");
+      removeButtons.forEach((button) => {
+        button.addEventListener("click", (e) => this.removeFromCart(e));
+      });
+    } else {
+      const footerElement = document.querySelector(".cart-footer");
+      if (footerElement) {
+        footerElement.classList.add("hide");
+      }
     }
+  }
 
-    init() {
-        this.renderCartContents();
+  removeFromCart(e) {
+    const idToRemove = e.target.dataset.id;
+    const cartItems = getLocalStorage(this.key) || [];
+
+    const itemIndex = cartItems.findIndex((item) => item.Id === idToRemove);
+
+    if (itemIndex !== -1) {
+      cartItems.splice(itemIndex, 1);
+      setLocalStorage(this.key, cartItems);
+      this.renderCartContents();
     }
+    superscript();
+  }
 
-    renderCartContents() {
-        const cartItems = getLocalStorage(this.key) || [];
+  updateItemQuantity(quantity, itemCart) {
+    const itemToUpdate = itemCart.target.dataset.id;
+    const cartItems = getLocalStorage(this.key) || [];
 
-        this.parentElement.innerHTML = "";
-
-        if (cartItems.length > 0) {
-            renderListWithTemplate(cartItemTemplate, this.parentElement, cartItems);
-
-            const total = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
-
-            const footerElement = document.querySelector(".cart-footer");
-            if (footerElement) {
-                footerElement.classList.remove("hide");
-            }
-
-            const totalElement = document.querySelector(".cart-total");
-            if (totalElement) {
-                totalElement.textContent = `Total: $${total.toFixed(2)}`;
-            }
-
-            const removeButtons = this.parentElement.querySelectorAll(".cart-card__remove");
-            removeButtons.forEach((button) => {
-                button.addEventListener("click", (e) => this.removeFromCart(e));
-            });
-        } else {
-            const footerElement = document.querySelector(".cart-footer");
-            if (footerElement) {
-                footerElement.classList.add("hide");
-            }
-        }
+    const itemIndex = cartItems.findIndex((item) => item.Id === itemToUpdate);
+    if (itemIndex !== -1) {
+      cartItems[itemIndex].Quantity = (cartItems[itemIndex].Quantity || 0) + quantity;
+      setLocalStorage(this.key, cartItems);
+      this.renderCartContents();
     }
-
-    removeFromCart(e) {
-        const idToRemove = e.target.dataset.id;
-        const cartItems = getLocalStorage(this.key) || [];
-
-        const itemIndex = cartItems.findIndex((item) => item.Id === idToRemove);
-
-        if (itemIndex !== -1) {
-            cartItems.splice(itemIndex, 1);
-            setLocalStorage(this.key, cartItems);
-            this.renderCartContents();
-        }
-        superscript();
-    }
+  }
 }

@@ -30,17 +30,18 @@ export default class ProductDetails {
             console.error("Product data is missing or incomplete:", this.product);
             return;
         }
-
         let cartItems = getLocalStorage("so-cart");
-
         if (!Array.isArray(cartItems)) {
             cartItems = [];
         }
-
-        cartItems.push(this.product);
-
+        const existingItem = cartItems.find((item) => item.Id === this.product.Id);
+        if(existingItem){
+          existingItem.Quantity = (existingItem.Quantity || 0) + 1;
+        }else {
+          this.product.Quantity = 1;
+          cartItems.push(this.product);
+        }
         setLocalStorage("so-cart", cartItems);
-
         superscript();
     }
 
