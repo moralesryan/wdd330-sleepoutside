@@ -13,17 +13,26 @@ export default class ProductDetails {
 
         // the product details are needed before rendering the HTML
         this.renderProductDetails();
+        this.renderComments();
+
+        document.getElementById("commentForm").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const author = document.getElementById("commentAuthor").value;
+            const text = document.getElementById("commentText").value;
+            this.dataSource.saveComment(this.productId, { author, text });
+            this.renderComments();
+            e.target.reset();
+        });
 
         // once the HTML is rendered, add a listener to the Add to Cart button
         // Notice the .bind(this). This callback will not work if the bind(this) is missing. Review the readings from this week on 'this' to understand why.
         // added query selector for ".cart" for functionality when button is clicked item rotates back and forth to show something has been added to the cart
-        document
-            .getElementById("addToCart")
-            .addEventListener("click", () => {
-                this.addProductToCart();
-                const cart = document.querySelector(".cart");
-                cart.classList.add("cart-update");
-            });
+        document.getElementById("addToCart").addEventListener("click", () => {
+            this.addProductToCart();
+            const cart = document.querySelector(".cart");
+            cart.classList.add("cart-update");
+        });
+
     }
     addProductToCart() {
         if (!this.product || !this.product.Id) {
@@ -46,6 +55,21 @@ export default class ProductDetails {
 
     renderProductDetails() {
         productDetailsTemplate(this.product);
+    }
+
+    renderComments() {
+        const comments = this.dataSource.getComments(this.productId);
+        const list = document.getElementById("commentsList");
+        list.innerHTML = "";
+        if (comments.length === 0) {
+            list.innerHTML = "<li>No comments yet.</li>";
+            return;
+        }
+        comments.forEach(comment => {
+            const li = document.createElement("li");
+            li.innerHTML = `<strong>${comment.author}</strong><p>${comment.text}</p>`;
+            list.appendChild(li);
+        });
     }
 
 }

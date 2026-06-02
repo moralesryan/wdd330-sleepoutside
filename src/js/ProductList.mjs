@@ -28,7 +28,7 @@ function productCardTemplate(product) {
         </p>
 
       </a>
-
+            <button class="quick-view-btn" data-id="${product.Id}">Quick View</button>
     </li>
   `;
 }
@@ -80,5 +80,26 @@ export default class ProductList {
       "afterbegin",
       true
     );
+
+    // attach quick view button handlers after rendering
+    this.listElement.querySelectorAll(".quick-view-btn").forEach(button => {
+      button.addEventListener("click", (e) => {
+        const productId = e.currentTarget.dataset.id;
+        const product = list.find(p => String(p.Id) === productId);
+        this.openModal(product);
+      });
+    });
+  }
+
+  openModal(product) {
+    document.getElementById("modal-img").src = product.Images?.PrimaryMedium || "";
+    document.getElementById("modal-brand").textContent = product.Brand?.Name || "";
+    document.getElementById("modal-name").textContent = product.Name || "";
+    document.getElementById("modal-price").textContent = `$${product.FinalPrice || ""}`;
+    document.getElementById("quick-view-modal").classList.remove("hidden");
+
+    document.getElementById("modal-close").addEventListener("click", () => {
+      document.getElementById("quick-view-modal").classList.add("hidden");
+    });
   }
 }

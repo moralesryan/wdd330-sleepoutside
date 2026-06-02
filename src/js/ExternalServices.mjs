@@ -51,4 +51,15 @@ export default class ExternalServices {
     };
     return await fetch(`${baseURL}checkout/`, options).then(convertToJson);
   }
+
+  getComments(productId) {
+    const comments = JSON.parse(localStorage.getItem(`comments-${productId}`)) || [];
+    return comments;
+  }
+
+  saveComment(productId, comment) {
+    const comments = this.getComments(productId);
+    comments.push(comment);
+    localStorage.setItem(`comments-${productId}`, JSON.stringify(comments));
+  }
 }
