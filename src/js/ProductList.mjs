@@ -71,26 +71,6 @@ export default class ProductList {
     if (!list || list.length === 0) {
       this.listElement.innerHTML = `<p class="no-products">No products found matching "${this.searchQuery || this.category}".</p>`;
       return;
-
-      this.listElement.querySelectorAll(".quick-view-btn").forEach(button => {
-        button.addEventListener("click", (e) => {
-          const productId = e.target.dataset.id;
-          const product = list.find(p => p.Id === productId);
-          this.openModal(product);
-        });
-      });
-    }
-
-    openModal(product) {
-      document.getElementById("modal-img").src = product.Images?.PrimaryMedium || "";
-      document.getElementById("modal-brand").textContent = product.Brand?.Name || "";
-      document.getElementById("modal-name").textContent = product.Name || "";
-      document.getElementById("modal-price").textContent = `$${product.FinalPrice || ""}`;
-      document.getElementById("quick-view-modal").classList.remove("hidden");
-
-      document.getElementById("modal-close").addEventListener("click", () => {
-        document.getElementById("quick-view-modal").classList.add("hidden");
-      });
     }
 
     renderListWithTemplate(
@@ -100,5 +80,26 @@ export default class ProductList {
       "afterbegin",
       true
     );
+
+    // attach quick view button handlers after rendering
+    this.listElement.querySelectorAll(".quick-view-btn").forEach(button => {
+      button.addEventListener("click", (e) => {
+        const productId = e.currentTarget.dataset.id;
+        const product = list.find(p => String(p.Id) === productId);
+        this.openModal(product);
+      });
+    });
+  }
+
+  openModal(product) {
+    document.getElementById("modal-img").src = product.Images?.PrimaryMedium || "";
+    document.getElementById("modal-brand").textContent = product.Brand?.Name || "";
+    document.getElementById("modal-name").textContent = product.Name || "";
+    document.getElementById("modal-price").textContent = `$${product.FinalPrice || ""}`;
+    document.getElementById("quick-view-modal").classList.remove("hidden");
+
+    document.getElementById("modal-close").addEventListener("click", () => {
+      document.getElementById("quick-view-modal").classList.add("hidden");
+    });
   }
 }
