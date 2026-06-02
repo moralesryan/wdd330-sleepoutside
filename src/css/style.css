@@ -226,7 +226,8 @@ button {
 }
 
 .cart-card__remove:hover {
-  color: #ff4d4d; /* Dynamic crimson red color for deletion actions */
+  color: #ff4d4d;
+  /* Dynamic crimson red color for deletion actions */
   transform: scale(1.2);
 }
 
@@ -260,21 +261,22 @@ button {
 }
 
 .cart-update {
-  
-  animation: Cart-Update 2s ease 0.5s ;
-  
+
+  animation: Cart-Update 2s ease 0.5s;
+
 }
 
 @keyframes Cart-Update {
-  
+
   0% {
-    
+
     transform: rotate(0deg);
   }
-  
+
   25% {
     transform: rotate(-30deg);
   }
+
   50% {
 
     transform: rotate(30deg);
@@ -283,8 +285,8 @@ button {
   75% {
     transform: rotate(-30deg);
   }
-  
-  
+
+
 }
 
 @media screen and (min-width: 500px) {
@@ -398,12 +400,13 @@ footer {
   font-size: 2.5rem;
   font-weight: 800;
   color: black;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 /* "Outside" styling */
 .hero-logo span {
-  color: #8a470c; /* deep purple */
+  color: #8a470c;
+  /* deep purple */
   font-weight: 900;
 }
 
@@ -482,6 +485,7 @@ footer {
     flex-wrap: wrap;
     gap: 0.5rem;
   }
+
   .search-bar {
     order: 3;
     margin: 0.5rem auto 0 auto;
@@ -507,7 +511,7 @@ footer {
   padding: 2rem;
   background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .checkout form {
@@ -592,7 +596,7 @@ footer {
   background-color: #f8f8f8;
   border: 1px solid var(--light-grey);
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   font-size: 1.1rem;
 }
 
@@ -625,7 +629,7 @@ footer {
   border-top: 2px solid var(--dark-grey);
 }
 
-.products > h2 {
+.products>h2 {
   text-align: center;
   font-family: var(--font-headline);
   font-size: 2.5rem;
@@ -643,7 +647,7 @@ footer {
   background: #f8f8f8;
   border-radius: 12px;
   margin-top: 2rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .cart-footer p {
@@ -662,7 +666,7 @@ footer {
   border-radius: 8px;
   text-align: center;
   transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 300px;
 }
@@ -670,12 +674,12 @@ footer {
 #checkout-btn:hover {
   background-color: var(--tertiary-color);
   transform: translateY(-2px);
-  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 #checkout-btn:active {
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* ==========================================================================
@@ -779,7 +783,9 @@ footer {
 }
 
 /* Quick View Modal Styles */
-.hidden { display: none !important; }
+.hidden {
+  display: none !important;
+}
 
 #quick-view-modal {
   position: fixed;
@@ -794,8 +800,15 @@ footer {
 }
 
 @keyframes quickViewFade {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 #quick-view-modal .modal {
@@ -803,7 +816,7 @@ footer {
   width: 100%;
   max-width: 900px;
   border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
@@ -871,7 +884,7 @@ footer {
 
 #modal-close:hover,
 #modal-close:focus {
-  background-color: rgba(0,0,0,0.06);
+  background-color: rgba(0, 0, 0, 0.06);
   outline: none;
 }
 
@@ -895,5 +908,3 @@ footer {
 #quick-view-modal .modal-body .modal-meta {
   margin-bottom: 0.5rem;
 }
-
-
