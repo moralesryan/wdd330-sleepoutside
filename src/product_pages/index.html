@@ -30,11 +30,7 @@
             <h3 class="divider">Product</h3>
 
             <!-- Product Image (JS will replace this) -->
-            <img
-                id="productImage"
-                class="divider"
-                alt="Product image"
-            />
+            <img id="productImage" class="divider" alt="Product image" />
 
             <!-- Price -->
             <p id="productPrice" class="product-card__price">
@@ -61,6 +57,19 @@
         </section>
 
     </main>
+
+    <section id="comments-section" class="divider">
+        <h2>Customer Comments</h2>
+        <ul id="commentsList"></ul>
+        <form id="commentForm">
+            <label for="commentAuthor">Name</label>
+            <input type="text" id="commentAuthor" required>
+            <label for="commentText">Comment</label>
+            <textarea id="commentText" required></textarea>
+            <button type="submit">Submit Comment</button>
+        </form>
+    </section>
+
 
     <!-- FOOTER -->
     <footer id="main-footer"></footer>

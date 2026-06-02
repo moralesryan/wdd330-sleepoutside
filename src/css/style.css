@@ -908,3 +908,136 @@ footer {
 #quick-view-modal .modal-body .modal-meta {
   margin-bottom: 0.5rem;
 }
+
+/* Comments Section Styles */
+#comments-section {
+  max-width: 820px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid var(--light-grey);
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+
+#comments-section h2 {
+  margin-bottom: 0.75rem;
+  color: var(--secondary-color);
+  font-size: 1.1rem;
+}
+
+#commentsList {
+  list-style: none;
+  margin: 0 0 1rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+#commentsList li {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  background: #fafafa;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.comment-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--light-grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--dark-grey);
+  flex-shrink: 0;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-meta {
+  font-size: var(--small-font);
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+
+.comment-text {
+  margin: 0;
+  color: var(--dark-grey);
+  line-height: 1.45;
+}
+
+/* Comment form */
+#commentForm {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+#commentForm label {
+  font-size: var(--small-font);
+  color: #333;
+}
+
+#commentForm input,
+#commentForm textarea {
+  padding: 0.6rem;
+  border: 1px solid var(--light-grey);
+  border-radius: 6px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+#commentForm textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+#commentForm button[type="submit"] {
+  padding: 0.5rem 1rem;
+  background: var(--secondary-color);
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  align-self: start;
+  transition: transform 0.12s ease, opacity 0.12s ease;
+}
+
+#commentForm button[type="submit"]:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+/* Empty state */
+#commentsList:empty::before {
+  content: "No comments yet. Be the first to leave one!";
+  display: block;
+  color: #666;
+  padding: 0.5rem 0;
+}
+
+@media (min-width: 700px) {
+  #commentForm {
+    grid-template-columns: 1fr 220px;
+    align-items: start;
+  }
+
+  #commentForm textarea {
+    grid-column: 1 / -1;
+  }
+}
+
+/* small touch: ensure forms inside divider sections have breathing room */
+#comments-section .divider,
+#comments-section .product-detail {
+  margin-bottom: 0.5rem;
+}
