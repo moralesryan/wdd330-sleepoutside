@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, alertMessage } from "./utils.mjs";
 import { superscript } from "./countingElementCart.mjs";
 
 export default class ProductDetails {
@@ -42,6 +42,7 @@ export default class ProductDetails {
         setLocalStorage("so-cart", cartItems);
 
         superscript();
+        alertMessage(`${this.product.NameWithoutBrand} added to cart!`);
     }
 
     renderProductDetails() {
